@@ -1,14 +1,29 @@
-export function Calendar () {
+import React from "react";
+//import { CalendarItem } from "./calendaritem";
+import '../styles.css';
+import { fillarr, weekdays } from "../Helpers/generatedays";
+import { monthdays } from "../Helpers/generatedays";
 
 
-    return ( 
+export const Calendar :React.FC<{}> = ({}) => { 
+    fillarr(2022,8);
+    console.log(monthdays)
 
-<div onClick={e => (e.currentTarget.childNodes[0] as HTMLDivElement).click()}>
+   return ( 
 
-<div> Calendar!@@</div>        
-<div onClick={e => e.currentTarget.parentElement?.click()}/>
+    
+      
 
-</div>
+    <div className ="grid-container">  
+      
+       {weekdays.map(day => (<div className="square glow-square"> {day} </div>))} 
+       {monthdays.map(day => (<div className="square glow-square"> {day.toString()} </div>))}  
+      
+
+    </div>
+
+
 
     )
+    
 }
