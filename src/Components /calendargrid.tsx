@@ -1,12 +1,13 @@
 import React from "react";
 //import { CalendarItem } from "./calendaritem";
 import '../styles.css';
-import { fillarr, weekdays } from "../Helpers/generatedays";
+import { blankarray, fillMonthArray, weekdays } from "../Helpers/generatedays";
 import { monthdays } from "../Helpers/generatedays";
 
 
+
 export const Calendar :React.FC<{}> = ({}) => { 
-    fillarr(2022,8);
+   
     console.log(monthdays)
 
    return ( 
@@ -16,7 +17,8 @@ export const Calendar :React.FC<{}> = ({}) => {
 
     <div className ="grid-container">  
       
-       {weekdays.map(day => (<div className="square glow-square"> {day} </div>))} 
+       {weekdays.map(day => (<div className="square weekday-container glow-square"> {day} </div>))} 
+       {blankarray.map(x => (<div className="square-dark"> </div>))}
        {monthdays.map(day => (<div className="square glow-square"> {day.toString()} </div>))}  
       
 

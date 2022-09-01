@@ -28,7 +28,17 @@ border-width: 1px;
 
 }
 
-
+.square-dark {
+  height:100px;
+  width:100px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: darkgray;
+  text-align: center;
+  margin:auto;
+  transition: all 0.2s ease-in-out;
+  }
 
 
 .square {
@@ -39,6 +49,7 @@ border-width: 2px;
 border-color: black;
 background-color: gray;
 text-align: center;
+margin:auto;
 transition: all 0.2s ease-in-out;
 }
 
@@ -46,12 +57,14 @@ transition: all 0.2s ease-in-out;
     color: rgba(255, 255, 255, 1);
     box-shadow: 0 10px 30px rgba(145, 92, 182, .4);
     background-color: purple;
+    ;
   }
 
 
 
   .weekday-container{
-
+    ;
     border-style: solid;
     border-width: 1px;
+    
   }

@@ -1,40 +1,88 @@
-export const weekdays:Array<string> = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+// Note: This entire file can be done with "npm date-fns"
+
+export const weekdays: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 //export const monthdays:Array<Number> = [];
-const getDaysInMonth = (year:number,month:number) => {return new Date(year,month,0).getDate();} //returns days in month
+const getDaysInMonth = (year: number, month: number) => { return new Date(year, month, 0).getDate(); } //returns days in month
+const firstDayOfMonth = (year: number, month: number) => { return new Date(year, month, 1) } // returns first Day of month 
+let firstDay = firstDayOfMonth(2022, 9 - 1).toDateString().split(" ", 1).toString();
+console.log(firstDay);
+export const fillMonthArray = (year: number, month: number) => {
 
-export const fillarr =(year:number, month:number) => { 
-    
-    let x = getDaysInMonth(year,month);
-    console.log("days in month" , x);
-    let tmparray:Array<number> =[];
-    
-    for (let i=1; i<x; i++)
-    {          
-        tmparray.push(i)
-        console.log("temparray: ", tmparray[i])
-        
+    let x = getDaysInMonth(year, month);
+    console.log("days in month", x);
+    let tmpdatesarray: Array<number> = [];
+
+    for (let i = 1; i <= x; i++) {
+        tmpdatesarray.push(i)
+        console.log("temparray: ", tmpdatesarray[i])
+
     }
-    return tmparray;
+    return tmpdatesarray;
 }
 
-export const monthdays:Array<Number> = fillarr(2022,8);
+const fillBlankArray = (firstDay: string) => {
+    const tempBlankArray:Array<Number> = [];
+    let x = 0;
+    switch (firstDay) {
 
-/*
+        case "Mon":
 
-TODO: Replace this functon with one that takes in the month as an argument
-      and returns an array with the number of days in that month. 
+            x = 0;
+            break;
+
+        case "Tue":
+
+            x = 1;
+            break;
+
+        case "Wed":
+
+            x = 2;
+            break;
+
+        case "Thu":
+
+            x = 3;
+            break;
+
+        case "Fri":
+
+            x = 4;
+            break;
+
+        case "Sat":
+
+            x = 5;
+            break;
+
+        case "Sun":
+
+            x = 6;
+            break;
+
+        default:
+
+    }
+
+    for(let i=0; i< x; i++) {
+tempBlankArray.push(i);
 
 
 
-const fillarr = () => {
+    }
 
-let tmparray = [];
-    for(let i =1; i<30; i++)
-    {tmparray.push(i.toString())}
+return tempBlankArray;
 
-    return tmparray;
 }
 
-export const weekdays:Array<String> = fillarr(); 
 
+export const blankarray: Array<Number> = fillBlankArray(firstDay);
+console.log("blanlarray", blankarray);
+export const monthdays: Array<Number> = fillMonthArray(2022, 12);
+
+/* ToDo: 
+
+Find which day the month starts on . 
+add N number of grey squares depending on day. Mon - 1 , Tuesday - 2 etc 
+shift white squares? 
 */
