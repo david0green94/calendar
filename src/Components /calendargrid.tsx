@@ -1,31 +1,39 @@
-import React from "react";
+import React, { useMemo } from "react";
 //import { CalendarItem } from "./calendaritem";
-import '../styles.css';
-import { blankarray, fillMonthArray, weekdays } from "../Helpers/generatedays";
-import { monthdays } from "../Helpers/generatedays";
+import "../styles.css";
+import {
+  fillMonthArray,
+  firstDayOfMonth,
+  WEEKDAYS,
+} from "../Helpers/generatedays";
+import { Day } from "./Day";
+import { CalendarHeaderCell } from "./CalendarHeaderCell";
 
+type CalendarProps = {
+  month: number;
+  year: number;
+  currentDate?: Date;
+};
 
+export const Calendar = ({ year, month, currentDate }: CalendarProps) => {
+  const monthdays = useMemo(() => fillMonthArray(year, month), [year, month]);
+  const blankArray = useMemo(() => {
+    const firstDay = firstDayOfMonth(year, month - 1);
+    const firstDayInt = firstDay.getDay() - 1;
+    return new Array(firstDayInt === -1 ? 6 : firstDayInt).fill(null);
+  }, [year, month]);
 
-export const Calendar :React.FC<{}> = ({}) => { 
-   
-    console.log(monthdays)
-
-   return ( 
-
-    
-      
-
-    <div className ="grid-container">  
-      
-       {weekdays.map(day => (<div className="square weekday-container glow-square"> {day} </div>))} 
-       {blankarray.map(x => (<div className="square-dark"> </div>))}
-       {monthdays.map(day => (<div className="square glow-square"> {day.toString()} </div>))}  
-      
-
+  return (
+    <div className="grid-container">
+      {WEEKDAYS.map((day) => (
+        <CalendarHeaderCell weekday={day} />
+      ))}
+      {blankArray.map(() => (
+        <div className="square-dark"> </div>
+      ))}
+      {monthdays.map((day) => (
+        <Day day={day} />
+      ))}
     </div>
-
-
-
-    )
-    
-}
+  );
+};
