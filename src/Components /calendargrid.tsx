@@ -22,7 +22,7 @@ export const Calendar = ({ year, month, currentDate }: CalendarProps) => {
     const firstDayInt = firstDay.getDay() - 1;
     return new Array(firstDayInt === -1 ? 6 : firstDayInt).fill(null);
   }, [year, month]);
-
+  console.log("Cal", { month, year });
   return (
     <div className="grid-container">
       {WEEKDAYS.map((day) => (
